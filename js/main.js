@@ -1,4 +1,4 @@
-/* Pipe IT site behaviour: mobile nav, mailto forms, reduced motion. */
+/* Pipe IT site behaviour: mobile nav, FormSubmit forms, reduced motion. */
 (function () {
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector("#site-nav");
@@ -27,43 +27,74 @@
     });
   }
 
-  function buildMailto(form) {
-    var to = form.getAttribute("data-mailto");
-    var subject = form.getAttribute("data-subject") || "Message from the Pipe IT website";
-    var lines = [];
-    var data = new FormData(form);
-    data.forEach(function (value, key) {
-      var text = String(value).trim();
-      if (!text) return;
-      var label = key.replace(/[_-]+/g, " ");
-      label = label.charAt(0).toUpperCase() + label.slice(1);
-      lines.push(label + ": " + text);
-    });
-    return (
-      "mailto:" +
-      to +
-      "?subject=" +
-      encodeURIComponent(subject) +
-      "&body=" +
-      encodeURIComponent(lines.join("\n\n"))
-    );
+  function showStatus(form, message, isError) {
+    var status = form.querySelector(".form-status");
+    if (!status) return;
+    status.hidden = false;
+    status.textContent = message;
+    status.classList.toggle("is-error", !!isError);
   }
 
-  document.querySelectorAll("form[data-mailto]").forEach(function (form) {
+  document.querySelectorAll("form[data-formsubmit]").forEach(function (form) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
-      var href = buildMailto(form);
-      form.dataset.lastMailto = href;
-      var status = form.querySelector(".form-status");
-      if (status) {
-        status.hidden = false;
-        status.textContent = "Opening your email app, addressed to " + form.getAttribute("data-mailto") + ".";
+
+      var successText = form.getAttribute("data-success") || "Thanks. Your message has been sent.";
+      var errorText = form.getAttribute("data-error") || "Sorry, that could not be sent. Please email pipeit@gobizit.com.";
+      var honey = form.querySelector('[name="_honey"]');
+      if (honey && String(honey.value).trim() !== "") {
+        showStatus(form, successText, false);
+        form.reset();
+        return;
       }
-      window.location.href = href;
+
+      var button = form.querySelector('[type="submit"]');
+      if (button) button.disabled = true;
+
+      var payload = {};
+      new FormData(form).forEach(function (value, key) {
+        payload[key] = value;
+      });
+      /* AJAX cannot complete FormSubmit's reCAPTCHA redirect, so captcha is off for this request only. */
+      payload._captcha = "false";
+
+      fetch(form.getAttribute("data-formsubmit"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (response) {
+          return response.json().then(
+            function (body) {
+              return { ok: response.ok, body: body };
+            },
+            function () {
+              return { ok: response.ok, body: null };
+            }
+          );
+        })
+        .then(function (result) {
+          var flagged = result.body && (result.body.success === false || result.body.success === "false");
+          if (result.ok && !flagged) {
+            showStatus(form, successText, false);
+            form.reset();
+          } else {
+            showStatus(form, errorText, true);
+          }
+        })
+        .catch(function () {
+          showStatus(form, errorText, true);
+        })
+        .then(function () {
+          if (button) button.disabled = false;
+        });
     });
   });
 

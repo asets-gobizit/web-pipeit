@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Pipe IT</title>
-  <meta name="description" content="Contact Pipe IT in Auckland. PwC Tower, 188 Quay St, Auckland 1010. Call +64.9.9408.101 or book an online meeting.">
+  <meta name="description" content="Contact Pipe IT in Auckland. PwC Tower, 188 Quay St, Auckland 1010. Call +64.21.330.266 or book an online meeting.">
   <link rel="canonical" href="https://pipeit.gobizit.com/contact.html">
   <meta name="theme-color" content="#342833">
   <meta property="og:site_name" content="Pipe IT">
   <meta property="og:title" content="Contact | Pipe IT">
-  <meta property="og:description" content="Contact Pipe IT in Auckland. PwC Tower, 188 Quay St, Auckland 1010. Call +64.9.9408.101 or book an online meeting.">
+  <meta property="og:description" content="Contact Pipe IT in Auckland. PwC Tower, 188 Quay St, Auckland 1010. Call +64.21.330.266 or book an online meeting.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pipeit.gobizit.com/contact.html">
   <meta property="og:image" content="https://pipeit.gobizit.com/assets/og.jpg">
   <meta property="og:locale" content="en_NZ">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact | Pipe IT">
-  <meta name="twitter:description" content="Contact Pipe IT in Auckland. PwC Tower, 188 Quay St, Auckland 1010. Call +64.9.9408.101 or book an online meeting.">
+  <meta name="twitter:description" content="Contact Pipe IT in Auckland. PwC Tower, 188 Quay St, Auckland 1010. Call +64.21.330.266 or book an online meeting.">
   <meta name="twitter:image" content="https://pipeit.gobizit.com/assets/og.jpg">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/favicon.png">
@@ -66,12 +66,17 @@
       <div class="container">
         <h1>Contact</h1>
         <!--
-          Placeholder for a future form endpoint.
-          The original Zoho form is not available on this static site.
-          This form has no backend: js/main.js opens mailto:pipeit@gobizit.com.
-          To plug in a hosted endpoint later, replace the submit handler in js/main.js.
+          FormSubmit emails pipeit@gobizit.com. JavaScript posts to the AJAX endpoint.
+          Without JavaScript, this form posts to the action URL instead.
+          The first submission sends a one-time activation email that must be confirmed.
         -->
-        <form id="contact-form" class="contact-form" action="mailto:pipeit@gobizit.com" method="post" enctype="text/plain" data-mailto="pipeit@gobizit.com" data-subject="Pipe IT website enquiry">
+        <form id="contact-form" class="contact-form" action="https://formsubmit.co/pipeit@gobizit.com" method="post" data-formsubmit="https://formsubmit.co/ajax/pipeit@gobizit.com" data-success="Thanks. Your message has been sent to pipeit@gobizit.com." data-error="Sorry, that could not be sent. Please email pipeit@gobizit.com.">
+          <input type="hidden" name="_subject" value="New Pipe IT website enquiry">
+          <input type="hidden" name="_template" value="table">
+          <div class="honeypot">
+            <label for="contact-honey">Leave this field empty</label>
+            <input id="contact-honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <div class="field">
             <label for="contact-name">Name</label>
             <input id="contact-name" name="name" type="text" autocomplete="name" required>
@@ -82,7 +87,7 @@
           </div>
           <div class="field">
             <label for="contact-phone">Phone</label>
-            <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel" required>
           </div>
           <div class="field">
             <label for="contact-message">Message</label>
@@ -91,7 +96,7 @@
           <div>
             <button class="btn" type="submit">Send Message</button>
           </div>
-          <p class="form-note">Sending opens your email app addressed to pipeit@gobizit.com. Nothing is stored on this website.</p>
+          <p class="form-note">Your message is emailed to pipeit@gobizit.com.</p>
           <p class="form-status" role="status" hidden></p>
         </form>
       </div>
@@ -118,7 +123,7 @@
             <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 3.5h3l1.6 4-2 1.2a12.5 12.5 0 0 0 6.2 6.2l1.2-2 4 1.6v3a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 4.7 5.5a1.8 1.8 0 0 1 1.8-2z"/></svg>
             <div>
               <h2>Call to Us</h2>
-              <p><a href="tel:+6499408101">+64.9.9408.101</a></p>
+              <p><a href="tel:+6421330266">+64.21.330.266</a></p>
             </div>
           </div>
           <div class="detail">
@@ -146,7 +151,13 @@
       </div>
       <div>
         <h2>Subscribe Now</h2>
-        <form class="footer-form subscribe-form" action="mailto:pipeit@gobizit.com" method="post" enctype="text/plain" data-mailto="pipeit@gobizit.com" data-subject="Subscribe to Pipe IT">
+        <form class="footer-form subscribe-form" action="https://formsubmit.co/pipeit@gobizit.com" method="post" data-formsubmit="https://formsubmit.co/ajax/pipeit@gobizit.com" data-success="Thanks. You are subscribed." data-error="Sorry, that could not be sent. Please email pipeit@gobizit.com.">
+          <input type="hidden" name="_subject" value="New Pipe IT website subscription">
+          <input type="hidden" name="_template" value="table">
+          <div class="honeypot">
+            <label for="sub-honey">Leave this field empty</label>
+            <input id="sub-honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <label class="visually-hidden" for="sub-name">Name</label>
           <input id="sub-name" name="name" type="text" placeholder="Name" autocomplete="name" required>
           <label class="visually-hidden" for="sub-email">Email</label>

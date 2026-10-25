@@ -12,9 +12,11 @@ Static website for Pipe IT, a Pipedrive affiliate partner in Auckland. It replac
 | `contact.html` | Contact |
 | `testimonial.html` | Client stories |
 
-`css/styles.css` holds the shared layout. `js/main.js` runs the mobile menu, the mailto forms, and reduced-motion handling for the product video. The header and footer are the same on every page.
+`css/styles.css` holds the shared layout. `js/main.js` runs the mobile menu, the forms, and reduced-motion handling for the product video. The header and footer are the same on every page.
 
-Copy and links come from the Zoho Sites capture, including the original wording. Phone links use E.164 (`tel:+6421330266` from +64.21.330.266, and `tel:+6499408101` from +64.9.9408.101). The contact form and the footer subscribe form open a `mailto:` to `pipeit@gobizit.com`. There is no server-side form handler. A comment in `contact.html` marks where a hosted form endpoint can be plugged in later.
+Copy and links come from the Zoho Sites capture, including the original wording. Every public phone link, including the header, Contact “Call to Us”, the services call line, and the home page structured-data telephone, uses `tel:+6421330266` (+64.21.330.266).
+
+The contact form and the footer subscribe form post to [FormSubmit](https://formsubmit.co/pipeit@gobizit.com), which emails `pipeit@gobizit.com`. With JavaScript, the page posts to `https://formsubmit.co/ajax/pipeit@gobizit.com` and shows a success or error message on the page. Without JavaScript, the form posts to `https://formsubmit.co/pipeit@gobizit.com`. The first submission triggers a one-time FormSubmit activation email to pipeit@gobizit.com that must be confirmed before later messages are delivered.
 
 The home hero background video from the Zoho site was not part of the capture. That band is a green CSS bokeh field behind the Pipedrive partner image. `Welcome.gif` (about 3.1 MB) is published as `assets/welcome.mp4` (about 186 KB) with a WebP poster. `assets/zpstock-image-339.png` was an almost empty file in the capture and is not shown.
 
