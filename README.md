@@ -14,7 +14,7 @@ Static website for Pipe IT, a Pipedrive affiliate partner in Auckland. It replac
 
 `css/styles.css` holds the shared layout. `js/main.js` runs the mobile menu, the forms, and reduced-motion handling for the product video. The header and footer are the same on every page.
 
-Copy and links come from the Zoho Sites capture, including the original wording. The header and Contact “Call to Us” use `tel:+6421330266` (+64.21.330.266). The services page call line still shows +64.9.9408.101 (`tel:+6499408101`), and the home page structured-data telephone is still `+6499408101`.
+Copy and links come from the Zoho Sites capture, including the original wording. Every public phone link, including the header, Contact “Call to Us”, the services call line, and the home page structured-data telephone, uses `tel:+6421330266` (+64.21.330.266).
 
 The contact form and the footer subscribe form post to [FormSubmit](https://formsubmit.co/pipeit@gobizit.com), which emails `pipeit@gobizit.com`. With JavaScript, the page posts to `https://formsubmit.co/ajax/pipeit@gobizit.com` and shows a success or error message on the page. Without JavaScript, the form posts to `https://formsubmit.co/pipeit@gobizit.com`. The first submission triggers a one-time FormSubmit activation email to pipeit@gobizit.com that must be confirmed before later messages are delivered.
 
