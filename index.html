@@ -231,7 +231,13 @@
       </div>
       <div>
         <h2>Subscribe Now</h2>
-        <form class="footer-form subscribe-form" action="mailto:pipeit@gobizit.com" method="post" enctype="text/plain" data-mailto="pipeit@gobizit.com" data-subject="Subscribe to Pipe IT">
+        <form class="footer-form subscribe-form" action="https://formsubmit.co/pipeit@gobizit.com" method="post" data-formsubmit="https://formsubmit.co/ajax/pipeit@gobizit.com" data-success="Thanks. You are subscribed." data-error="Sorry, that could not be sent. Please email pipeit@gobizit.com.">
+          <input type="hidden" name="_subject" value="New Pipe IT website subscription">
+          <input type="hidden" name="_template" value="table">
+          <div class="honeypot">
+            <label for="sub-honey">Leave this field empty</label>
+            <input id="sub-honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <label class="visually-hidden" for="sub-name">Name</label>
           <input id="sub-name" name="name" type="text" placeholder="Name" autocomplete="name" required>
           <label class="visually-hidden" for="sub-email">Email</label>

@@ -858,6 +858,19 @@ p:last-child {
   margin: 0;
 }
 
+.form-status.is-error {
+  color: #9b1c1c;
+}
+
+.honeypot {
+  display: none;
+}
+
+button:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
 .contact-panel {
   padding: 28px 0 72px;
 }
@@ -1038,6 +1051,10 @@ p:last-child {
 
 .site-footer .form-status {
   color: #fff;
+}
+
+.site-footer .form-status.is-error {
+  color: #ffe8e8;
 }
 
 .footer-base {
